@@ -1,0 +1,1858 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EduLens | Calm Smart Learning</title>
+
+<style>
+:root{
+  --pink:#e86b98;
+  --dark-pink:#a83f68;
+  --light-pink:#fff0f6;
+  --soft:#f9d5e2;
+  --text:#382631;
+  --muted:#806d77;
+  --white:#fff;
+  --green:#3b9b6d;
+  --red:#d6536e;
+  --shadow:0 12px 35px rgba(170,70,110,.10);
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{scroll-behavior:smooth;}
+
+body{
+  font-family:Arial,sans-serif;
+  background:#fffafd;
+  color:var(--text);
+  line-height:1.6;
+  overflow-x:hidden;
+  transition:background .8s,color .8s;
+}
+
+/* peaceful background */
+body::before,
+body::after{
+  content:"";
+  position:fixed;
+  width:280px;
+  height:280px;
+  border-radius:50%;
+  filter:blur(65px);
+  opacity:.18;
+  pointer-events:none;
+  z-index:-1;
+}
+
+body::before{
+  background:#f5aeca;
+  top:10%;
+  left:-130px;
+  animation:floatOne 14s ease-in-out infinite alternate;
+}
+
+body::after{
+  background:#e5bcd2;
+  right:-130px;
+  bottom:5%;
+  animation:floatTwo 17s ease-in-out infinite alternate;
+}
+
+@keyframes floatOne{
+  from{transform:translate(0,0);}
+  to{transform:translate(100px,80px);}
+}
+
+@keyframes floatTwo{
+  from{transform:translate(0,0);}
+  to{transform:translate(-80px,-70px);}
+}
+
+header{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  background:rgba(255,255,255,.94);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid #f1dce5;
+}
+
+.nav{
+  max-width:1150px;
+  margin:auto;
+  padding:15px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+}
+
+.logo{
+  font-size:25px;
+  font-weight:800;
+  color:var(--dark-pink);
+  animation:breathe 4s ease-in-out infinite;
+}
+
+.logo span{color:var(--pink);}
+
+@keyframes breathe{
+  0%,100%{transform:scale(1);}
+  50%{transform:scale(1.03);}
+}
+
+nav{
+  display:flex;
+  gap:15px;
+}
+
+nav a{
+  text-decoration:none;
+  color:var(--text);
+  font-size:14px;
+  font-weight:bold;
+}
+
+nav a:hover{color:var(--pink);}
+
+.container{
+  max-width:1150px;
+  margin:auto;
+  padding:0 20px;
+}
+
+.hero{
+  padding:80px 20px 65px;
+  background:linear-gradient(135deg,#fff0f6,#fff,#ffeaf2);
+}
+
+.hero-inner{
+  max-width:1150px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:1.25fr .75fr;
+  gap:40px;
+  align-items:center;
+}
+
+.badge{
+  display:inline-block;
+  padding:7px 14px;
+  border-radius:30px;
+  background:#ffe1ec;
+  color:var(--dark-pink);
+  font-size:13px;
+  font-weight:bold;
+  margin-bottom:18px;
+}
+
+h1{
+  font-size:52px;
+  line-height:1.08;
+  margin-bottom:18px;
+}
+
+h1 span{color:var(--pink);}
+
+.hero p{
+  color:var(--muted);
+  max-width:650px;
+  font-size:17px;
+}
+
+.hero-box{
+  background:white;
+  padding:35px;
+  border-radius:28px;
+  box-shadow:var(--shadow);
+  text-align:center;
+  animation:gentleFloat 6s ease-in-out infinite;
+}
+
+@keyframes gentleFloat{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-8px);}
+}
+
+.hero-icon{
+  font-size:65px;
+  margin-bottom:10px;
+}
+
+.btn{
+  border:0;
+  background:var(--pink);
+  color:white;
+  padding:11px 18px;
+  border-radius:12px;
+  cursor:pointer;
+  font-weight:bold;
+  transition:.3s;
+}
+
+.btn:hover{
+  transform:translateY(-2px);
+  background:var(--dark-pink);
+  box-shadow:0 8px 18px rgba(232,107,152,.20);
+}
+
+.btn.secondary{
+  background:#ffe5ef;
+  color:var(--dark-pink);
+}
+
+section{padding:60px 0;}
+
+.section-title{
+  text-align:center;
+  margin-bottom:30px;
+}
+
+.section-title h2{
+  font-size:31px;
+  color:var(--dark-pink);
+}
+
+.section-title p{color:var(--muted);}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+
+.card,
+.game-card{
+  background:white;
+  border:1px solid #f1dce5;
+  border-radius:21px;
+  padding:23px;
+  box-shadow:var(--shadow);
+  transition:transform .4s,box-shadow .4s;
+}
+
+.card:hover,
+.game-card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 16px 35px rgba(170,70,110,.15);
+}
+
+.icon{font-size:34px;}
+
+.muted{
+  color:var(--muted);
+  font-size:14px;
+}
+
+.stat{
+  font-size:30px;
+  font-weight:800;
+  color:var(--pink);
+}
+
+.scanner{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:25px;
+}
+
+input{
+  width:100%;
+  padding:12px;
+  border:1px solid #efd7e1;
+  border-radius:10px;
+  margin:8px 0 12px;
+  font-size:15px;
+  outline:none;
+}
+
+input:focus{border-color:var(--pink);}
+
+.result{
+  display:none;
+  margin-top:15px;
+  padding:15px;
+  border-radius:12px;
+  background:var(--light-pink);
+}
+
+.progress-wrap{margin:18px 0;}
+
+.progress-top{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:6px;
+  font-size:14px;
+}
+
+.progress{
+  height:10px;
+  background:#f3e3e9;
+  border-radius:20px;
+  overflow:hidden;
+}
+
+.progress-bar{
+  height:100%;
+  width:0;
+  background:linear-gradient(90deg,var(--pink),#f7a8c3);
+  border-radius:20px;
+  transition:1.2s;
+}
+
+.game-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+
+.game-area{
+  margin-top:17px;
+  padding:15px;
+  border-radius:14px;
+  background:#fff8fb;
+}
+
+.score-row{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.math-number,
+.brain-number{
+  font-size:32px;
+  font-weight:bold;
+  text-align:center;
+  color:var(--dark-pink);
+  margin:15px 0;
+}
+
+.feedback{
+  min-height:25px;
+  margin-top:10px;
+  font-weight:bold;
+}
+
+.memory-board{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:8px;
+  margin-top:15px;
+}
+
+.memory-card{
+  height:65px;
+  border:0;
+  border-radius:10px;
+  background:var(--pink);
+  color:white;
+  font-size:25px;
+  cursor:pointer;
+  transition:.25s;
+}
+
+.memory-card:hover{transform:scale(1.04);}
+
+.memory-card.open,
+.memory-card.matched{
+  background:#ffe0eb;
+  color:var(--dark-pink);
+}
+
+.options{
+  display:grid;
+  gap:10px;
+}
+
+.option{
+  padding:12px;
+  border:1px solid #efd7e1;
+  border-radius:10px;
+  background:white;
+  cursor:pointer;
+  text-align:left;
+}
+
+.option:hover{background:var(--light-pink);}
+
+.option.correct{
+  background:#e5f7ed;
+  border-color:var(--green);
+}
+
+.option.wrong{
+  background:#ffe8ed;
+  border-color:var(--red);
+}
+
+.code-question{
+  background:#292027;
+  color:#ffeef5;
+  padding:15px;
+  border-radius:12px;
+  font-family:monospace;
+  white-space:pre-line;
+  margin:15px 0;
+}
+
+.quiz-question{
+  font-size:20px;
+  font-weight:bold;
+  margin:15px 0;
+}
+
+.timer{
+  font-size:52px;
+  text-align:center;
+  font-weight:bold;
+  color:var(--dark-pink);
+  margin:15px;
+}
+
+.balance-circle{
+  width:150px;
+  height:150px;
+  margin:20px auto;
+  border-radius:50%;
+  background:#ffe2ec;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  color:var(--dark-pink);
+  font-size:28px;
+  font-weight:bold;
+}
+
+.score-box{
+  padding:17px;
+  background:var(--light-pink);
+  border-radius:14px;
+  text-align:center;
+}
+
+footer{
+  padding:30px 20px;
+  background:#30222a;
+  color:white;
+  text-align:center;
+}
+
+/* floating peaceful stickers */
+.sticker{
+  position:fixed;
+  pointer-events:none;
+  z-index:5;
+  opacity:.38;
+  font-size:27px;
+  animation:stickerFloat 9s ease-in-out infinite;
+}
+
+.s1{left:4%;top:30%;}
+.s2{right:4%;top:55%;animation-delay:2s;}
+.s3{left:7%;bottom:12%;animation-delay:4s;}
+
+@keyframes stickerFloat{
+  0%,100%{transform:translateY(0) rotate(0);}
+  50%{transform:translateY(-17px) rotate(5deg);}
+}
+
+/* sleep mode */
+body.sleep-mode{
+  background:#211820;
+  color:#f8e9ef;
+}
+
+body.sleep-mode header,
+body.sleep-mode .card,
+body.sleep-mode .game-card{
+  background:#30232d;
+  color:#f8e9ef;
+}
+
+body.sleep-mode p,
+body.sleep-mode .muted{
+  color:#d8c3ce;
+}
+
+body.sleep-mode .game-area{
+  background:#382a34;
+}
+
+body.sleep-mode::before,
+body.sleep-mode::after{
+  opacity:.08;
+}
+
+@media(max-width:850px){
+  .hero-inner,
+  .scanner{
+    grid-template-columns:1fr;
+  }
+
+  .grid,
+  .game-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  nav{display:none;}
+
+  h1{font-size:40px;}
+}
+
+@media(max-width:550px){
+  .grid,
+  .game-grid{
+    grid-template-columns:1fr;
+  }
+
+  section{padding:45px 0;}
+
+  h1{font-size:35px;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- peaceful floating stickers -->
+<div class="sticker s1">🌸</div>
+<div class="sticker s2">🦋</div>
+<div class="sticker s3">✨</div>
+
+<header>
+<div class="nav">
+
+<div class="logo">Edu<span>Lens</span> 🎀</div>
+
+<nav>
+<a href="#home">Home</a>
+<a href="#scanner">Scanner</a>
+<a href="#health">Health</a>
+<a href="#games">Games</a>
+<a href="#quiz">Quiz</a>
+<a href="#sleep">Sleep</a>
+</nav>
+
+<button class="btn secondary" onclick="toggleSleepMode()">
+🌙 Sleep Mode
+</button>
+
+</div>
+</header>
+
+
+<section class="hero" id="home">
+
+<div class="hero-inner">
+
+<div>
+
+<div class="badge">SMART LEARNING + WELLBEING</div>
+
+<h1>
+Learn Without<br>
+<span>The Stress.</span>
+</h1>
+
+<p>
+EduLens helps students understand what they know,
+discover weak concepts, practice through games and quizzes,
+and maintain a healthy study-sleep balance.
+</p>
+
+<br>
+
+<a href="#scanner">
+<button class="btn">Start Learning 🚀</button>
+</a>
+
+</div>
+
+<div class="hero-box">
+
+<div class="hero-icon">🎓</div>
+
+<h2>Your Calm Learning Space</h2>
+
+<p class="muted">
+Learn • Practice • Play • Relax
+</p>
+
+</div>
+
+</div>
+</section>
+
+
+<section>
+
+<div class="container">
+
+<div class="section-title">
+<h2>📊 Student Dashboard</h2>
+<p>Your learning activity at a glance</p>
+</div>
+
+<div class="grid">
+
+<div class="card">
+<div class="icon">🎮</div>
+<div class="stat" id="gamesPlayed">0</div>
+<p class="muted">Games Played</p>
+</div>
+
+<div class="card">
+<div class="icon">🏆</div>
+<div class="stat" id="bestScore">0</div>
+<p class="muted">Best Game Score</p>
+</div>
+
+<div class="card">
+<div class="icon">😴</div>
+<div class="stat" id="sleepDisplay">--</div>
+<p class="muted">Last Sleep Duration</p>
+</div>
+
+</div>
+</div>
+</section>
+
+
+<section id="scanner">
+
+<div class="container">
+
+<div class="section-title">
+<h2>🔍 Knowledge Scanner</h2>
+<p>Find the concepts that need more practice.</p>
+</div>
+
+<div class="scanner">
+
+<div class="card">
+
+<h3>Check a Concept</h3>
+
+<p class="muted">
+Enter something you are currently studying.
+</p>
+
+<input id="conceptInput"
+placeholder="Example: DBMS Keys, C Loops, HTML">
+
+<button class="btn" onclick="scanConcept()">
+Scan Concept
+</button>
+
+<div class="result" id="scanResult"></div>
+
+</div>
+
+
+<div class="card">
+
+<h3>💡 Smart Learning Guide</h3>
+
+<p class="muted">
+EduLens uses your activity to give simple learning suggestions.
+</p>
+
+<br>
+
+<div class="progress-wrap">
+
+<div class="progress-top">
+<span>Problem Solving</span>
+<span>20%</span>
+</div>
+
+<div class="progress">
+<div class="progress-bar" id="problemBar"></div>
+</div>
+
+</div>
+
+<div class="progress-wrap">
+
+<div class="progress-top">
+<span>Concept Understanding</span>
+<span>30%</span>
+</div>
+
+<div class="progress">
+<div class="progress-bar" id="conceptBar"></div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+</div>
+</section>
+
+
+<section id="health">
+
+<div class="container">
+
+<div class="section-title">
+<h2>🧠 Knowledge Health</h2>
+<p>Your learning areas.</p>
+</div>
+
+<div class="card">
+
+<div class="progress-wrap">
+<div class="progress-top">
+<span>💻 C Programming</span>
+<span>35%</span>
+</div>
+<div class="progress">
+<div class="progress-bar" id="cBar"></div>
+</div>
+</div>
+
+<div class="progress-wrap">
+<div class="progress-top">
+<span>🗄️ DBMS</span>
+<span>25%</span>
+</div>
+<div class="progress">
+<div class="progress-bar" id="dbmsBar"></div>
+</div>
+</div>
+
+<div class="progress-wrap">
+<div class="progress-top">
+<span>➗ Mathematics</span>
+<span>20%</span>
+</div>
+<div class="progress">
+<div class="progress-bar" id="mathBar"></div>
+</div>
+</div>
+
+<div class="progress-wrap">
+<div class="progress-top">
+<span>🌐 Web Basics</span>
+<span>40%</span>
+</div>
+<div class="progress">
+<div class="progress-bar" id="webBar"></div>
+</div>
+</div>
+
+</div>
+</div>
+</section>
+
+
+<section id="games">
+
+<div class="container">
+
+<div class="section-title">
+<h2>🎮 EduGames</h2>
+<p>Practice your skills without making learning stressful.</p>
+</div>
+
+<div class="game-grid">
+
+
+<div class="game-card">
+
+<div class="icon">🧮</div>
+
+<h3>Math Challenge</h3>
+
+<p class="muted">
+Solve random maths problems.
+</p>
+
+<div class="game-area">
+
+<div class="score-row">
+<b>Score: <span id="mathScore">0</span></b>
+<b>🔥 <span id="mathStreak">0</span></b>
+</div>
+
+<div class="math-number" id="mathQuestion">
+Click Start
+</div>
+
+<input type="number" id="mathAnswer"
+placeholder="Your answer">
+
+<button class="btn" onclick="checkMath()">Submit</button>
+
+<button class="btn secondary"
+onclick="newMathQuestion()">Start / Next</button>
+
+<div class="feedback" id="mathFeedback"></div>
+
+</div>
+</div>
+
+
+<div class="game-card">
+
+<div class="icon">🧠</div>
+
+<h3>Memory Match</h3>
+
+<p class="muted">
+Match all pairs.
+</p>
+
+<div class="game-area">
+
+<div class="score-row">
+<b>Moves: <span id="memoryMoves">0</span></b>
+<b>Pairs: <span id="memoryPairs">0</span>/4</b>
+</div>
+
+<div class="memory-board" id="memoryBoard"></div>
+
+<br>
+
+<button class="btn secondary"
+onclick="startMemoryGame()">Restart</button>
+
+</div>
+</div>
+
+
+<div class="game-card">
+
+<div class="icon">⚡</div>
+
+<h3>Quick Brain</h3>
+
+<p class="muted">
+Solve patterns before time runs out.
+</p>
+
+<div class="game-area">
+
+<div class="score-row">
+<b>Score: <span id="brainScore">0</span></b>
+<b>Time: <span id="brainTime">30</span>s</b>
+</div>
+
+<div class="brain-number" id="brainQuestion">
+Ready?
+</div>
+
+<input type="number" id="brainAnswer"
+placeholder="Missing number">
+
+<button class="btn" onclick="startBrainGame()">Start</button>
+
+<button class="btn secondary"
+onclick="checkBrain()">Answer</button>
+
+<div class="feedback" id="brainFeedback"></div>
+
+</div>
+</div>
+
+
+<div class="game-card">
+
+<div class="icon">💻</div>
+
+<h3>Coding Challenge</h3>
+
+<p class="muted">
+Predict the output of C programs.
+</p>
+
+<div class="game-area">
+
+<div class="code-question" id="codeQuestion">
+Loading...
+</div>
+
+<div class="options" id="codeOptions"></div>
+
+<div class="feedback" id="codeFeedback"></div>
+
+<button class="btn secondary"
+onclick="nextCodeQuestion()">Next Question</button>
+
+</div>
+</div>
+
+
+<div class="game-card">
+
+<div class="icon">🏆</div>
+
+<h3>Game Score</h3>
+
+<div class="score-box">
+<div class="stat" id="totalGameScore">0</div>
+<p class="muted">Total Score</p>
+</div>
+
+<br>
+
+<div class="score-box">
+<div class="stat" id="bestGameScore">0</div>
+<p class="muted">Best Score</p>
+</div>
+
+</div>
+
+
+<div class="game-card">
+
+<div class="icon">💡</div>
+
+<h3>Learning Insight</h3>
+
+<p id="learningInsight">
+Start playing to receive learning suggestions.
+</p>
+
+</div>
+
+</div>
+</div>
+</section>
+
+
+<section id="quiz">
+
+<div class="container">
+
+<div class="section-title">
+<h2>📝 Adaptive Quiz</h2>
+<p>Practice important concepts.</p>
+</div>
+
+<div class="card">
+
+<div class="score-row">
+<b>Score: <span id="quizScore">0</span></b>
+<b>Question: <span id="quizNumber">1</span></b>
+</div>
+
+<div class="quiz-question" id="quizQuestion">
+Loading...
+</div>
+
+<div class="options" id="quizOptions"></div>
+
+<div class="feedback" id="quizFeedback"></div>
+
+<button class="btn secondary"
+onclick="nextQuizQuestion()">Next Question</button>
+
+</div>
+</div>
+</section>
+
+
+<section id="sleep">
+
+<div class="container">
+
+<div class="section-title">
+<h2>😴 Study–Sleep Balance</h2>
+<p>Your brain needs both learning and rest.</p>
+</div>
+
+<div class="grid">
+
+
+<div class="card">
+
+<h3>🌙 Sleep Tracker</h3>
+
+<label>Sleep Time</label>
+<input type="time" id="sleepTime">
+
+<label>Wake-up Time</label>
+<input type="time" id="wakeTime">
+
+<button class="btn" onclick="calculateSleep()">
+Calculate Sleep
+</button>
+
+<div class="result" id="sleepResult"></div>
+
+</div>
+
+
+<div class="card">
+
+<h3>⚖️ Balance</h3>
+
+<div class="balance-circle" id="balanceScore">
+50%
+</div>
+
+<p style="text-align:center" id="balanceText">
+Keep building a healthy routine.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h3>⏱️ Focus Timer</h3>
+
+<div class="timer" id="timer">
+25:00
+</div>
+
+<div style="text-align:center">
+
+<button class="btn" onclick="startTimer()">Start</button>
+
+<button class="btn secondary"
+onclick="pauseTimer()">Pause</button>
+
+<button class="btn secondary"
+onclick="resetTimer()">Reset</button>
+
+</div>
+
+</div>
+
+</div>
+</div>
+</section>
+
+
+<footer>
+
+<h3>EduLens 🎀</h3>
+
+<p>Learn smarter. Practice better. Live healthier.</p>
+
+<br>
+
+<small>
+Education Technology Project • Built with HTML, CSS & JavaScript
+</small>
+
+</footer>
+
+
+<script>
+
+/* DASHBOARD */
+
+let gamesPlayed =
+Number(localStorage.getItem("gamesPlayed")) || 0;
+
+let totalScore =
+Number(localStorage.getItem("totalScore")) || 0;
+
+let bestScore =
+Number(localStorage.getItem("bestScore")) || 0;
+
+function updateDashboard(){
+
+document.getElementById("gamesPlayed").innerText=gamesPlayed;
+document.getElementById("bestScore").innerText=bestScore;
+document.getElementById("totalGameScore").innerText=totalScore;
+document.getElementById("bestGameScore").innerText=bestScore;
+
+}
+
+function registerGame(score){
+
+gamesPlayed++;
+totalScore+=score;
+
+if(score>bestScore){
+bestScore=score;
+}
+
+localStorage.setItem("gamesPlayed",gamesPlayed);
+localStorage.setItem("totalScore",totalScore);
+localStorage.setItem("bestScore",bestScore);
+
+updateDashboard();
+
+}
+
+
+/* SCANNER */
+
+function scanConcept(){
+
+let input=document.getElementById("conceptInput")
+.value.trim().toLowerCase();
+
+let result=document.getElementById("scanResult");
+
+if(!input){
+result.style.display="block";
+result.innerHTML="⚠️ Please enter a concept.";
+return;
+}
+
+let message="";
+
+if(input.includes("loop") || input.includes("c programming")){
+
+message=
+"🟡 <b>Practice Recommended</b><br>" +
+"Revise for, while and do-while loops, then solve 3 small programs.";
+
+}
+
+else if(input.includes("dbms") || input.includes("database") || input.includes("key")){
+
+message=
+"🟡 <b>Practice Recommended</b><br>" +
+"Revise Primary Key, Foreign Key, Candidate Key and Super Key.";
+
+}
+
+else if(input.includes("math")){
+
+message=
+"🟠 <b>Practice Recommended</b><br>" +
+"Start with basic calculations and gradually increase difficulty.";
+
+}
+
+else if(input.includes("html")){
+
+message=
+"🟢 <b>Good Starting Point</b><br>" +
+"Practice HTML tags, attributes and page structure.";
+
+}
+
+else{
+
+message=
+"🔵 <b>Concept Added</b><br>" +
+"Explain the topic in your own words and solve 3 questions.";
+
+}
+
+result.style.display="block";
+result.innerHTML=message;
+
+}
+
+
+/* PROGRESS */
+
+setTimeout(()=>{
+
+document.getElementById("problemBar").style.width="20%";
+document.getElementById("conceptBar").style.width="30%";
+document.getElementById("cBar").style.width="35%";
+document.getElementById("dbmsBar").style.width="25%";
+document.getElementById("mathBar").style.width="20%";
+document.getElementById("webBar").style.width="40%";
+
+},300);
+
+
+/* MATH */
+
+let mathA=0;
+let mathB=0;
+let mathOperator="+";
+let mathScore=0;
+let mathStreak=0;
+
+let mathMistakes={
+"+":0,
+"-":0,
+"*":0,
+"/":0
+};
+
+function newMathQuestion(){
+
+let operators=["+","-","*","/"];
+
+mathOperator=
+operators[Math.floor(Math.random()*operators.length)];
+
+mathA=Math.floor(Math.random()*20)+1;
+mathB=Math.floor(Math.random()*20)+1;
+
+if(mathOperator==="/"){
+mathA=mathA*mathB;
+}
+
+document.getElementById("mathQuestion").innerText=
+mathA+" "+mathOperator+" "+mathB+" = ?";
+
+document.getElementById("mathAnswer").value="";
+document.getElementById("mathFeedback").innerText="";
+
+}
+
+function checkMath(){
+
+let answer=
+Number(document.getElementById("mathAnswer").value);
+
+let correct;
+
+if(mathOperator==="+") correct=mathA+mathB;
+if(mathOperator==="-") correct=mathA-mathB;
+if(mathOperator==="*") correct=mathA*mathB;
+if(mathOperator==="/") correct=mathA/mathB;
+
+let feedback=document.getElementById("mathFeedback");
+
+if(answer===correct){
+
+mathScore+=10;
+mathStreak++;
+
+feedback.innerText="✅ Correct! Keep going 🌸";
+feedback.style.color="var(--green)";
+
+}else{
+
+mathMistakes[mathOperator]++;
+mathStreak=0;
+
+feedback.innerText=
+"❌ Correct answer: "+correct;
+
+feedback.style.color="var(--red)";
+
+}
+
+document.getElementById("mathScore").innerText=mathScore;
+document.getElementById("mathStreak").innerText=mathStreak;
+
+updateInsight();
+
+newMathQuestion();
+
+}
+
+
+/* MEMORY */
+
+let memoryValues=[
+"📚","📚","💻","💻",
+"🧠","🧠","🎯","🎯"
+];
+
+let firstCard=null;
+let secondCard=null;
+let lockBoard=false;
+let memoryMoves=0;
+let memoryPairs=0;
+
+function shuffle(array){
+return array.sort(()=>Math.random()-.5);
+}
+
+function startMemoryGame(){
+
+let board=document.getElementById("memoryBoard");
+
+board.innerHTML="";
+
+firstCard=null;
+secondCard=null;
+lockBoard=false;
+memoryMoves=0;
+memoryPairs=0;
+
+document.getElementById("memoryMoves").innerText=0;
+document.getElementById("memoryPairs").innerText=0;
+
+shuffle([...memoryValues]).forEach(value=>{
+
+let card=document.createElement("button");
+
+card.className="memory-card";
+card.innerText="❔";
+card.dataset.value=value;
+
+card.onclick=()=>flipMemory(card);
+
+board.appendChild(card);
+
+});
+
+}
+
+function flipMemory(card){
+
+if(lockBoard ||
+card===firstCard ||
+card.classList.contains("matched")) return;
+
+card.classList.add("open");
+card.innerText=card.dataset.value;
+
+if(!firstCard){
+
+firstCard=card;
+return;
+
+}
+
+secondCard=card;
+memoryMoves++;
+
+document.getElementById("memoryMoves").innerText=
+memoryMoves;
+
+if(firstCard.dataset.value===secondCard.dataset.value){
+
+firstCard.classList.add("matched");
+secondCard.classList.add("matched");
+
+memoryPairs++;
+
+document.getElementById("memoryPairs").innerText=
+memoryPairs;
+
+firstCard=null;
+secondCard=null;
+
+if(memoryPairs===4){
+
+let score=Math.max(10,100-memoryMoves*5);
+
+registerGame(score);
+
+setTimeout(()=>{
+alert("🎉 Memory Complete!\nScore: "+score);
+},200);
+
+}
+
+}else{
+
+lockBoard=true;
+
+setTimeout(()=>{
+
+firstCard.classList.remove("open");
+secondCard.classList.remove("open");
+
+firstCard.innerText="❔";
+secondCard.innerText="❔";
+
+firstCard=null;
+secondCard=null;
+lockBoard=false;
+
+},700);
+
+}
+
+}
+
+startMemoryGame();
+
+
+/* QUICK BRAIN */
+
+let brainAnswer=0;
+let brainScore=0;
+let brainTime=30;
+let brainTimer=null;
+
+function generateBrainQuestion(){
+
+let start=Math.floor(Math.random()*10)+2;
+let difference=Math.floor(Math.random()*8)+2;
+
+brainAnswer=start+difference*3;
+
+document.getElementById("brainQuestion").innerText=
+start+", "+
+(start+difference)+", "+
+(start+difference*2)+", ?";
+
+}
+
+function startBrainGame(){
+
+clearInterval(brainTimer);
+
+brainScore=0;
+brainTime=30;
+
+document.getElementById("brainScore").innerText=0;
+document.getElementById("brainTime").innerText=30;
+
+generateBrainQuestion();
+
+brainTimer=setInterval(()=>{
+
+brainTime--;
+
+document.getElementById("brainTime").innerText=brainTime;
+
+if(brainTime<=0){
+
+clearInterval(brainTimer);
+brainTimer=null;
+
+registerGame(brainScore);
+
+document.getElementById("brainFeedback").innerText=
+"⏰ Time up! Score: "+brainScore;
+
+}
+
+},1000);
+
+}
+
+function checkBrain(){
+
+if(brainTime<=0) return;
+
+let answer=
+Number(document.getElementById("brainAnswer").value);
+
+let feedback=
+document.getElementById("brainFeedback");
+
+if(answer===brainAnswer){
+
+brainScore+=10;
+
+feedback.innerText="✅ Correct!";
+
+feedback.style.color="var(--green)";
+
+generateBrainQuestion();
+
+document.getElementById("brainAnswer").value="";
+
+}else{
+
+feedback.innerText="❌ Try again!";
+feedback.style.color="var(--red)";
+
+}
+
+document.getElementById("brainScore").innerText=
+brainScore;
+
+}
+
+
+/* CODING */
+
+const codingQuestions=[
+
+{
+question:`int x = 5;
+printf("%d", x + 2);`,
+options:["5","7","2","52"],
+answer:1,
+explanation:"5 + 2 = 7."
+},
+
+{
+question:`int a = 10;
+int b = 3;
+printf("%d", a % b);`,
+options:["1","3","0","10"],
+answer:0,
+explanation:"% gives the remainder. 10 % 3 = 1."
+},
+
+{
+question:`int x = 4;
+if(x % 2 == 0)
+    printf("Even");
+else
+    printf("Odd");`,
+options:["Odd","Even","4","Error"],
+answer:1,
+explanation:"4 is divisible by 2, so output is Even."
+}
+
+];
+
+let codeIndex=0;
+
+function loadCodeQuestion(){
+
+let q=codingQuestions[codeIndex];
+
+document.getElementById("codeQuestion").innerText=
+q.question;
+
+let box=document.getElementById("codeOptions");
+
+box.innerHTML="";
+
+q.options.forEach((option,index)=>{
+
+let button=document.createElement("button");
+
+button.className="option";
+button.innerText=option;
+
+button.onclick=()=>{
+
+let feedback=
+document.getElementById("codeFeedback");
+
+if(index===q.answer){
+
+button.classList.add("correct");
+
+feedback.innerText=
+"✅ Correct! "+q.explanation;
+
+feedback.style.color="var(--green)";
+
+registerGame(10);
+
+}else{
+
+button.classList.add("wrong");
+
+feedback.innerText=
+"❌ Incorrect. "+q.explanation;
+
+feedback.style.color="var(--red)";
+
+}
+
+};
+
+box.appendChild(button);
+
+});
+
+}
+
+function nextCodeQuestion(){
+
+codeIndex++;
+
+if(codeIndex>=codingQuestions.length){
+codeIndex=0;
+}
+
+document.getElementById("codeFeedback").innerText="";
+
+loadCodeQuestion();
+
+}
+
+loadCodeQuestion();
+
+
+/* INSIGHT */
+
+function updateInsight(){
+
+let insight=document.getElementById("learningInsight");
+
+if(mathMistakes["/"]>=2){
+
+insight.innerHTML=
+"💡 <b>Focus Area:</b> Practice division and multiplication.";
+
+}else if(mathMistakes["*"]>=2){
+
+insight.innerHTML=
+"💡 <b>Focus Area:</b> Practice multiplication tables.";
+
+}else if(mathScore>=50){
+
+insight.innerHTML=
+"🌟 <b>Great progress!</b> Your maths practice is improving.";
+
+}else{
+
+insight.innerHTML=
+"💡 Keep practicing. Your mistakes help identify what to revise.";
+
+}
+
+}
+
+
+/* QUIZ */
+
+const quizQuestions=[
+
+{
+question:"Which key uniquely identifies a record?",
+options:["Foreign Key","Primary Key","Duplicate Key","Search Key"],
+answer:1
+},
+
+{
+question:"Which symbol starts a single-line comment in C?",
+options:["//","##","<!--","**"],
+answer:0
+},
+
+{
+question:"What is 8 × 7?",
+options:["54","56","64","48"],
+answer:1
+},
+
+{
+question:"Which HTML tag is used for the main heading?",
+options:["<p>","<h1>","<head>","<title>"],
+answer:1
+}
+
+];
+
+let quizIndex=0;
+let quizScore=0;
+
+function loadQuiz(){
+
+let q=quizQuestions[quizIndex];
+
+document.getElementById("quizNumber").innerText=
+quizIndex+1;
+
+document.getElementById("quizQuestion").innerText=
+q.question;
+
+let box=document.getElementById("quizOptions");
+
+box.innerHTML="";
+
+q.options.forEach((option,index)=>{
+
+let button=document.createElement("button");
+
+button.className="option";
+button.innerText=option;
+
+button.onclick=()=>{
+
+let feedback=
+document.getElementById("quizFeedback");
+
+if(index===q.answer){
+
+button.classList.add("correct");
+
+quizScore+=10;
+
+feedback.innerText="✅ Correct!";
+feedback.style.color="var(--green)";
+
+}else{
+
+button.classList.add("wrong");
+
+feedback.innerText=
+"❌ Incorrect. Revise this concept.";
+
+feedback.style.color="var(--red)";
+
+}
+
+document.getElementById("quizScore").innerText=
+quizScore;
+
+};
+
+box.appendChild(button);
+
+});
+
+}
+
+function nextQuizQuestion(){
+
+quizIndex++;
+
+if(quizIndex>=quizQuestions.length){
+quizIndex=0;
+}
+
+document.getElementById("quizFeedback").innerText="";
+
+loadQuiz();
+
+}
+
+loadQuiz();
+
+
+/* SLEEP */
+
+function calculateSleep(){
+
+let sleep=document.getElementById("sleepTime").value;
+let wake=document.getElementById("wakeTime").value;
+
+if(!sleep || !wake){
+
+alert("Please enter both times.");
+return;
+
+}
+
+let start=new Date("2000-01-01T"+sleep);
+let end=new Date("2000-01-01T"+wake);
+
+if(end<=start){
+end.setDate(end.getDate()+1);
+}
+
+let minutes=Math.round((end-start)/60000);
+
+let hours=Math.floor(minutes/60);
+let mins=minutes%60;
+
+let duration=hours+"h "+mins+"m";
+
+document.getElementById("sleepResult").style.display="block";
+
+document.getElementById("sleepResult").innerHTML=
+"😴 You slept for <b>"+duration+"</b>";
+
+localStorage.setItem("sleepDuration",duration);
+
+document.getElementById("sleepDisplay").innerText=
+duration;
+
+let balance;
+
+if(hours>=7) balance=90;
+else if(hours>=6) balance=75;
+else if(hours>=5) balance=55;
+else balance=35;
+
+document.getElementById("balanceScore").innerText=
+balance+"%";
+
+document.getElementById("balanceText").innerText=
+balance>=80
+?"🌟 Great! Your sleep supports learning."
+:balance>=60
+?"🙂 Good, but try getting a little more rest."
+:"⚠️ More rest may help your learning.";
+
+}
+
+let savedSleep=localStorage.getItem("sleepDuration");
+
+if(savedSleep){
+document.getElementById("sleepDisplay").innerText=savedSleep;
+}
+
+
+/* TIMER */
+
+let timerSeconds=1500;
+let timerInterval=null;
+
+function updateTimer(){
+
+let min=Math.floor(timerSeconds/60);
+let sec=timerSeconds%60;
+
+document.getElementById("timer").innerText=
+String(min).padStart(2,"0")+":"+
+String(sec).padStart(2,"0");
+
+}
+
+function startTimer(){
+
+if(timerInterval) return;
+
+timerInterval=setInterval(()=>{
+
+if(timerSeconds>0){
+
+timerSeconds--;
+updateTimer();
+
+}else{
+
+clearInterval(timerInterval);
+timerInterval=null;
+
+alert("🎉 Focus session complete! Take a peaceful break.");
+
+}
+
+},1000);
+
+}
+
+function pauseTimer(){
+
+clearInterval(timerInterval);
+timerInterval=null;
+
+}
+
+function resetTimer(){
+
+clearInterval(timerInterval);
+timerInterval=null;
+
+timerSeconds=1500;
+
+updateTimer();
+
+}
+
+updateTimer();
+
+
+/* SLEEP MODE */
+
+function toggleSleepMode(){
+
+document.body.classList.toggle("sleep-mode");
+
+localStorage.setItem(
+"sleepMode",
+document.body.classList.contains("sleep-mode")
+);
+
+}
+
+if(localStorage.getItem("sleepMode")==="true"){
+
+document.body.classList.add("sleep-mode");
+
+}
+
+
+/* DASHBOARD */
+
+updateDashboard();
+
+</script>
+
+</body>
+</html>
